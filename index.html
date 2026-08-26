@@ -122,7 +122,26 @@
   .mini-bar{height:9px;border-radius:99px;background:rgba(105,67,143,.12);overflow:hidden}
   .mini-fill{height:100%;background:linear-gradient(90deg,#8b68ae,#6d9b86);border-radius:99px}
   .day b{text-align:right;color:var(--purple)}
-  .footer{text-align:center;font-size:.75rem;opacity:.58;margin-top:20px}
+  .footer{text-align:center;font-size:.75rem;opacity:.58;margin-top:12px}
+  .weight-pill{
+    margin-left:auto;white-space:nowrap;font-size:.68rem;font-weight:900;color:var(--purple);
+    background:rgba(105,67,143,.09);padding:5px 8px;border-radius:999px
+  }
+  .no-points{color:#786c87;background:rgba(120,108,135,.08)}
+  .isagi-zone{
+    margin-top:22px;text-align:center;padding:22px 14px 0;position:relative;overflow:hidden;
+    background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.78);
+    border-radius:25px;box-shadow:var(--shadow)
+  }
+  .isagi-zone:before{
+    content:"✦  ·  ✧  ·  ♡  ·  ✦";display:block;color:var(--purple-soft);font-size:.9rem;letter-spacing:.18em;margin-bottom:5px
+  }
+  .isagi-message{font-weight:900;color:var(--purple-dark);font-size:.98rem;margin:4px auto 2px}
+  .isagi-sub{font-size:.76rem;opacity:.62;margin-bottom:3px}
+  .isagi-img{
+    display:block;width:min(180px,48vw);height:auto;margin:5px auto -4px;
+    filter:drop-shadow(0 10px 10px rgba(60,40,80,.14));user-select:none;-webkit-user-drag:none
+  }
   .celebrate{animation:pop .45s ease}
   @keyframes pop{50%{transform:scale(1.025)}}
   @media(min-width:600px){.app{padding-top:35px}.sections{display:grid;grid-template-columns:1fr 1fr;gap:14px}.section{margin:0}.quote{font-size:1.02rem}}
@@ -147,7 +166,7 @@
     </div>
     <div class="bar"><div class="fill" id="fill"></div></div>
     <div class="stats">
-      <div class="stat"><b id="streak">0</b><span>🔥 racha</span></div>
+      <div class="stat"><b id="streak">0</b><span>🔥 racha necesarias</span></div>
       <div class="stat"><b id="perfect">0</b><span>🏆 días 100%</span></div>
       <div class="stat"><b id="average">0%</b><span>🌱 promedio</span></div>
     </div>
@@ -155,22 +174,22 @@
 
   <div class="sections">
     <section class="section">
-      <div class="section-head"><div class="icon">🌱</div><div><h2>Necesarias</h2><p>Lo importante del día</p></div></div>
+      <div class="section-head"><div class="icon">🌱</div><div><h2>Necesarias</h2><p>Lo importante del día</p></div><span class="weight-pill">55% del día</span></div>
       <div id="necessary"></div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div class="icon">✨</div><div><h2>Extras</h2><p>Cosas bonitas que suman</p></div></div>
+      <div class="section-head"><div class="icon">✨</div><div><h2>Extras</h2><p>Cosas bonitas que suman</p></div><span class="weight-pill">35% del día</span></div>
       <div id="extras"></div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div class="icon">💜</div><div><h2>Hoy evité...</h2><p>Cada pequeño intento cuenta</p></div></div>
+      <div class="section-head"><div class="icon">💜</div><div><h2>Hoy evité...</h2><p>Cada pequeño intento cuenta</p></div><span class="weight-pill">10% del día</span></div>
       <div id="avoid"></div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div class="icon">🍙</div><div><h2>Comiditas fáciles</h2><p>Ideas, no obligaciones</p></div></div>
+      <div class="section-head"><div class="icon">🍙</div><div><h2>Comiditas fáciles</h2><p>Solo ideas para elegir; no tienes que comerlas todas JAJA 💜</p></div><span class="weight-pill no-points">sin puntos</span></div>
       <div id="food"></div>
     </section>
   </div>
@@ -183,6 +202,12 @@
   <div class="history" id="history">
     <h2>Tu caminito 🌷</h2>
     <div id="historyList"></div>
+  </div>
+
+  <div class="isagi-zone">
+    <div class="isagi-message">Una misión más. Sigue adelante ♡</div>
+    <div class="isagi-sub">Isagi vino a vigilar el final de la lista :3</div>
+    <img class="isagi-img" src="isagi.png" alt="Isagi">
   </div>
 
   <div class="footer">Hecho con mucho cariño · tus días anteriores se guardan automáticamente 💌</div>
@@ -210,7 +235,8 @@ const TASKS = {
     "¡Hoy hice mis tareas!",
     "¡Hoy hice algo diferente!",
     "¡Hoy toqué la guitarra!",
-    "¡Hoy programé!"
+    "¡Hoy programé!",
+    "¡Hoy cociné!"
   ],
   avoid: [
     "Hoy no procrastiné :D",
@@ -244,7 +270,9 @@ const todayKey = () => {
 };
 
 let data = JSON.parse(localStorage.getItem("dailyQuest") || '{"days":{}}');
+const CATEGORY_WEIGHTS = { necessary: 55, extras: 35, avoid: 10, food: 0 };
 const allTasks = Object.entries(TASKS).flatMap(([cat,items]) => items.map((text,i)=>({id:cat+"-"+i,cat,text})));
+const scoringTasks = allTasks.filter(t => CATEGORY_WEIGHTS[t.cat] > 0);
 const key = todayKey();
 
 if (!data.days[key]) {
@@ -275,22 +303,41 @@ function renderCategory(cat){
   });
 }
 
+function categoryFraction(k, cat){
+  const completed = data.days[k]?.completed || {};
+  const items = TASKS[cat] || [];
+  if(!items.length) return 0;
+  const done = items.filter((_,i)=>completed[cat+"-"+i]).length;
+  return done / items.length;
+}
+
+function weightedPct(k){
+  const score = Object.entries(CATEGORY_WEIGHTS).reduce((sum,[cat,weight]) => {
+    return sum + categoryFraction(k, cat) * weight;
+  }, 0);
+  return Math.round(score);
+}
+
 function todayStats(){
-  const done = allTasks.filter(t=>data.days[key].completed[t.id]).length;
-  const total = allTasks.length;
-  return {done,total,pct: total ? Math.round(done/total*100) : 0};
+  const completed = data.days[key].completed || {};
+  const done = scoringTasks.filter(t=>completed[t.id]).length;
+  const total = scoringTasks.length;
+  return {done,total,pct:weightedPct(key)};
 }
 
 function dayPct(k){
+  return weightedPct(k);
+}
+
+function completedAllNecessary(k){
   const completed = data.days[k]?.completed || {};
-  const done = allTasks.filter(t=>completed[t.id]).length;
-  return Math.round(done/allTasks.length*100);
+  return TASKS.necessary.every((_,i)=>!!completed["necessary-"+i]);
 }
 
 function update(){
   const s = todayStats();
   document.getElementById("percent").textContent = s.pct+"%";
-  document.getElementById("progressText").textContent = `${s.done} de ${s.total} completadas`;
+  document.getElementById("progressText").textContent = `${s.done} de ${s.total} metas con puntos · comidas aparte`;
   document.getElementById("fill").style.width = s.pct+"%";
   document.getElementById("quote").textContent =
     s.pct === 100 ? "🌟 ¡Misión completada! Estoy muy orgullosa de ti. Ahora toca descansar. 💜"
@@ -303,7 +350,7 @@ function update(){
   const d = new Date();
   while(true){
     const k = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-    if(!data.days[k] || dayPct(k) < 50) break;
+    if(!data.days[k] || !completedAllNecessary(k)) break;
     streak++; d.setDate(d.getDate()-1);
   }
   const pcts = keys.map(dayPct);
