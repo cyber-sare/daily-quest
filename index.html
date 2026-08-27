@@ -52,7 +52,8 @@
   .mood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
   .mood-btn{padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.7);text-align:center;font-size:1.2rem} .mood-btn span{display:block;font-size:.72rem;margin-top:4px} .mood-btn.active{background:rgba(115,80,166,.16);outline:2px solid rgba(115,80,166,.28)}
   textarea{width:100%;min-height:102px;border:0;border-radius:18px;margin-top:12px;padding:14px;font:inherit;resize:vertical;background:rgba(255,255,255,.62);color:var(--ink)}
-  .small-card,.history{border-radius:24px;padding:17px;position:relative} .history h2,.small-card h2{margin:0;color:var(--purple-dark);font-size:1.08rem} .history p,.small-card p{margin:4px 0 0;font-size:.77rem;opacity:.7}
+  .small-card,.history{border-radius:24px;padding:17px;position:relative}
+  .history{margin:14px 0} .history h2,.small-card h2{margin:0;color:var(--purple-dark);font-size:1.08rem} .history p,.small-card p{margin:4px 0 0;font-size:.77rem;opacity:.7}
   .day{display:grid;grid-template-columns:72px 1fr 48px;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.83rem}
   .mini-bar{height:9px;border-radius:99px;background:rgba(115,80,166,.12);overflow:hidden} .mini-fill{height:100%;background:linear-gradient(90deg,#8f6bc2,#6f9f8c);border-radius:99px} .day b{text-align:right;color:var(--purple)}
   .history-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
@@ -72,7 +73,7 @@
   .player-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:8px} .player-row a{font-size:.84rem;color:var(--purple-dark);font-weight:800;text-decoration:none}
   select{width:100%;margin-top:10px;border:0;border-radius:14px;padding:12px;font:inherit;background:rgba(255,255,255,.72);color:var(--ink)}
   .playlist-tip{font-size:.75rem;opacity:.68;margin-top:10px;line-height:1.4}
-  .floating-plush{position:fixed;right:12px;bottom:84px;z-index:35;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .floating-plush{position:fixed;right:12px;bottom:62px;z-index:35;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
   .plush-bubble{max-width:170px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);border-radius:18px;padding:10px 12px;box-shadow:var(--shadow);font-size:.82rem;display:none} .plush-bubble.show{display:block}
   .plush-btn{background:transparent;border:0;padding:0;width:auto;height:auto;box-shadow:none} .plush-btn img{width:88px;height:auto;display:block;filter:drop-shadow(0 12px 18px rgba(72,49,102,.22));animation:bob 2.8s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -82,7 +83,7 @@
   .love-strip{margin-top:16px;padding:14px;border-radius:24px;display:grid;grid-template-columns:1fr;gap:12px;align-items:center;text-align:center} .love-strip img{display:block;margin:0 auto;width:min(230px,80%);height:auto;filter:drop-shadow(0 10px 12px rgba(60,40,80,.12))} .love-strip b{color:var(--purple-dark);font-size:1rem} .love-strip span{font-size:.8rem;opacity:.72}
   .footer{text-align:center;font-size:.75rem;opacity:.58;margin-top:12px} .empty{opacity:.55;font-size:.88rem;padding:10px 3px} .hide{display:none !important}
   @media(min-width:640px){.app{padding-top:30px} .sections{display:grid;grid-template-columns:1fr 1fr;gap:14px} .section{margin:0} .two-col{grid-template-columns:1.08fr .92fr} .history-grid{grid-template-columns:1fr 1fr} .love-strip{grid-template-columns:1.1fr .9fr;text-align:left} }
-  @media(max-width:520px){h1{font-size:1.95rem} .plush-btn img{width:66px} .floating-plush{right:8px;bottom:78px} .nav-mini a{font-size:.72rem;padding:10px 6px} .clove-sticker{width:56px;bottom:10px;right:10px} .clove-note{right:58px;bottom:18px;font-size:.66rem;padding:5px 8px}}
+  @media(max-width:520px){h1{font-size:1.95rem} .plush-btn img{width:66px} .floating-plush{right:8px;bottom:56px} .nav-mini a{font-size:.72rem;padding:10px 6px} .clove-sticker{width:56px;bottom:10px;right:10px} .clove-note{right:58px;bottom:18px;font-size:.66rem;padding:5px 8px}}
 </style>
 </head>
 <body>
