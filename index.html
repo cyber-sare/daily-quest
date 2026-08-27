@@ -186,9 +186,7 @@ function showMorningModalIfNeeded(){const hour=new Date().getHours();const modal
 function toggleHardDay(){const day=ensureDay(key);day.hardDay=!day.hardDay;save();updateUI();}
 document.getElementById('historyBtn').addEventListener('click',()=>document.getElementById('historySection').scrollIntoView({behavior:'smooth',block:'start'}));
 document.getElementById('toggleMoreHistory').addEventListener('click',()=>{const more=document.getElementById('historyMore');more.classList.toggle('hide');document.getElementById('toggleMoreHistory').textContent=more.classList.contains('hide')?'📖 Ver más':'📕 Ver menos';});
-document.getElementById('resetBtn').addEventListener('click',resetToday);document.getElementById('hardDayBtn').addEventListener('click',toggleHardDay);document.getElementById('missionBtn').addEventListener('click',()=>{const msg=RANDOM_MISSIONS[Math.floor(Math.random()*RANDOM_MISSIONS.length)];alert('Mini misión del momento:
-
-'+msg);});
+document.getElementById('resetBtn').addEventListener('click',resetToday);document.getElementById('hardDayBtn').addEventListener('click',toggleHardDay);document.getElementById('missionBtn').addEventListener('click',()=>{const msg=RANDOM_MISSIONS[Math.floor(Math.random()*RANDOM_MISSIONS.length)];alert('Mini misión del momento:\n\n'+msg);});
 document.querySelectorAll('.mood-btn').forEach(btn=>btn.addEventListener('click',()=>{const day=ensureDay(key);day.mood=btn.dataset.mood===day.mood?'':btn.dataset.mood;save();updateUI();}));
 document.getElementById('goodThing').addEventListener('input',e=>{ensureDay(key).goodThing=e.target.value;save();updateUI();});
 document.getElementById('plushBtn').addEventListener('click',()=>document.getElementById('plushBubble').classList.toggle('show'));
