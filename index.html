@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#7c5aa8">
+<link rel="icon" type="image/png" href="favicon.png">
 <title>Daily Quest 💜</title>
 <style>
   :root{--bg1:#f4eeff;--bg2:#e5dbff;--bg3:#d7defa;--purple:#7350a6;--purple-dark:#533475;--purple-soft:#9b82c9;--ink:#403355;--card:rgba(255,255,255,.74);--line:rgba(115,80,166,.18);--shadow:0 14px 36px rgba(71,48,104,.15);}
@@ -52,8 +53,7 @@
   .mood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
   .mood-btn{padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.7);text-align:center;font-size:1.2rem} .mood-btn span{display:block;font-size:.72rem;margin-top:4px} .mood-btn.active{background:rgba(115,80,166,.16);outline:2px solid rgba(115,80,166,.28)}
   textarea{width:100%;min-height:102px;border:0;border-radius:18px;margin-top:12px;padding:14px;font:inherit;resize:vertical;background:rgba(255,255,255,.62);color:var(--ink)}
-  .small-card,.history{border-radius:24px;padding:17px;position:relative}
-  .history{margin:14px 0} .history h2,.small-card h2{margin:0;color:var(--purple-dark);font-size:1.08rem} .history p,.small-card p{margin:4px 0 0;font-size:.77rem;opacity:.7}
+  .small-card,.history{border-radius:24px;padding:17px;position:relative} .history h2,.small-card h2{margin:0;color:var(--purple-dark);font-size:1.08rem} .history p,.small-card p{margin:4px 0 0;font-size:.77rem;opacity:.7}
   .day{display:grid;grid-template-columns:72px 1fr 48px;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.83rem}
   .mini-bar{height:9px;border-radius:99px;background:rgba(115,80,166,.12);overflow:hidden} .mini-fill{height:100%;background:linear-gradient(90deg,#8f6bc2,#6f9f8c);border-radius:99px} .day b{text-align:right;color:var(--purple)}
   .history-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
@@ -73,7 +73,7 @@
   .player-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:8px} .player-row a{font-size:.84rem;color:var(--purple-dark);font-weight:800;text-decoration:none}
   select{width:100%;margin-top:10px;border:0;border-radius:14px;padding:12px;font:inherit;background:rgba(255,255,255,.72);color:var(--ink)}
   .playlist-tip{font-size:.75rem;opacity:.68;margin-top:10px;line-height:1.4}
-  .floating-plush{position:fixed;right:12px;bottom:62px;z-index:35;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .floating-plush{position:fixed;right:12px;bottom:84px;z-index:35;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
   .plush-bubble{max-width:170px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);border-radius:18px;padding:10px 12px;box-shadow:var(--shadow);font-size:.82rem;display:none} .plush-bubble.show{display:block}
   .plush-btn{background:transparent;border:0;padding:0;width:auto;height:auto;box-shadow:none} .plush-btn img{width:88px;height:auto;display:block;filter:drop-shadow(0 12px 18px rgba(72,49,102,.22));animation:bob 2.8s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -83,11 +83,57 @@
   .love-strip{margin-top:16px;padding:14px;border-radius:24px;display:grid;grid-template-columns:1fr;gap:12px;align-items:center;text-align:center} .love-strip img{display:block;margin:0 auto;width:min(230px,80%);height:auto;filter:drop-shadow(0 10px 12px rgba(60,40,80,.12))} .love-strip b{color:var(--purple-dark);font-size:1rem} .love-strip span{font-size:.8rem;opacity:.72}
   .footer{text-align:center;font-size:.75rem;opacity:.58;margin-top:12px} .empty{opacity:.55;font-size:.88rem;padding:10px 3px} .hide{display:none !important}
   @media(min-width:640px){.app{padding-top:30px} .sections{display:grid;grid-template-columns:1fr 1fr;gap:14px} .section{margin:0} .two-col{grid-template-columns:1.08fr .92fr} .history-grid{grid-template-columns:1fr 1fr} .love-strip{grid-template-columns:1.1fr .9fr;text-align:left} }
-  @media(max-width:520px){h1{font-size:1.95rem} .plush-btn img{width:66px} .floating-plush{right:8px;bottom:56px} .nav-mini a{font-size:.72rem;padding:10px 6px} .clove-sticker{width:56px;bottom:10px;right:10px} .clove-note{right:58px;bottom:18px;font-size:.66rem;padding:5px 8px}}
+  @media(max-width:520px){h1{font-size:1.95rem} .plush-btn img{width:66px} .floating-plush{right:8px;bottom:78px} .nav-mini a{font-size:.72rem;padding:10px 6px} .clove-sticker{width:56px;bottom:10px;right:10px} .clove-note{right:58px;bottom:18px;font-size:.66rem;padding:5px 8px}}
+
+  /* ===== Daily Quest V5 ===== */
+  body{transition:background .45s ease,color .35s ease}
+  body.soft-mode{
+    background:
+      radial-gradient(circle at 18% 10%, rgba(255,255,255,.055) 0 8%, transparent 25%),
+      radial-gradient(circle at 83% 22%, rgba(255,255,255,.045) 0 7%, transparent 25%),
+      linear-gradient(145deg,#282231,#393044 50%,#313342);
+    background-attachment:fixed;
+  }
+  body.soft-mode::before,body.soft-mode::after{background:rgba(175,150,200,.08)}
+  body.soft-mode .glass{background:rgba(238,231,247,.87);box-shadow:0 14px 36px rgba(8,5,14,.28)}
+  body.soft-mode .nav-mini a{background:rgba(238,231,247,.9)}
+  body.soft-mode .floating-plush{filter:saturate(.82) brightness(.92)}
+
+  .guide-card{margin:16px 0;padding:17px;border-radius:24px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;overflow:hidden}
+  .guide-copy h2{margin:0;color:var(--purple-dark);font-size:1.08rem}.guide-copy p{margin:5px 0 12px;font-size:.82rem;opacity:.72;line-height:1.45}
+  .guide-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;background:var(--purple);color:white;font-weight:900;padding:11px 14px;border-radius:15px;box-shadow:0 8px 18px rgba(83,52,117,.18)}
+  .guide-art{width:112px;max-height:94px;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(60,40,80,.13))}
+
+  .local-player{margin-top:12px;padding:15px;border-radius:20px;background:rgba(255,255,255,.46)}
+  .disc-stage{display:grid;place-items:center;min-height:205px;position:relative;overflow:hidden;border-radius:20px;background:rgba(115,80,166,.07)}
+  .disc-glow{position:absolute;width:190px;height:190px;border-radius:50%;background:var(--cover-bg,rgba(115,80,166,.13));filter:blur(32px);opacity:.55;transform:scale(1.2)}
+  .disc{position:relative;width:176px;height:176px;border-radius:50%;overflow:hidden;box-shadow:0 13px 28px rgba(50,34,70,.24);animation:discSpin 11s linear infinite;animation-play-state:paused;border:5px solid rgba(35,28,43,.86)}
+  .disc.playing{animation-play-state:running}.disc img{width:100%;height:100%;object-fit:cover;display:block}
+  .disc::after{content:"";position:absolute;left:50%;top:50%;width:27px;height:27px;border-radius:50%;transform:translate(-50%,-50%);background:rgba(247,242,252,.92);border:7px solid rgba(38,30,47,.8);box-shadow:0 0 0 2px rgba(255,255,255,.45)}
+  @keyframes discSpin{to{transform:rotate(360deg)}}
+  .music-title{text-align:center;font-weight:900;color:var(--purple-dark);font-size:1rem;margin-top:12px;line-height:1.3}.music-count{text-align:center;font-size:.76rem;opacity:.65;margin-top:3px}
+  .seek-row{display:grid;grid-template-columns:38px 1fr 38px;gap:8px;align-items:center;margin-top:12px;font-size:.68rem;opacity:.74}.seek-row span:last-child{text-align:right}
+  input[type="range"].seek,input[type="range"].volume{accent-color:var(--purple);width:100%;cursor:pointer}
+  .music-controls{display:grid;grid-template-columns:40px 44px 54px 44px 40px;gap:7px;justify-content:center;align-items:center;margin-top:10px}.music-controls button{padding:10px 7px;border-radius:14px;box-shadow:none}.music-controls .play-main{font-size:1.15rem;background:var(--purple);color:#fff}
+  .music-controls button.active{background:rgba(115,80,166,.17);outline:2px solid rgba(115,80,166,.2)}
+  .volume-row{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:center;margin-top:10px}
+  .track-select-label{font-size:.72rem;opacity:.65;margin-top:12px}.track-select{margin-top:5px}
+
+  .sleep-modal .modal-card{width:min(430px,100%)}
+  .sleep-modal .modal-card img{width:min(330px,86vw);max-height:330px;object-fit:contain;background:rgba(255,255,255,.28)}
+
+  @media(max-width:520px){
+    .guide-card{grid-template-columns:1fr}.guide-art{width:92px;justify-self:center;grid-row:1}.guide-copy{text-align:center}
+    .disc-stage{min-height:185px}.disc{width:152px;height:152px}.disc-glow{width:165px;height:165px}
+    .music-controls{grid-template-columns:38px 42px 50px 42px 38px;gap:5px}
+  }
+
 </style>
 </head>
 <body>
-<div class="modal" id="morningModal"><div class="modal-card glass"><img src="good_morning_everybunny.jpg" alt="Good Morning Everybunny"><h3>Good Morning Everybunny! 🐰</h3><p>Que tengas un día suavecito y bonito 💜</p><button class="primary" id="closeMorningModal">Entrar a Daily Quest</button></div></div>
+<div class="modal" id="morningModal"><div class="modal-card glass"><img src="good_morning_everybunny.jpg" alt="Good Morning Everybunny"><h3>Good Morning Everybunny! 🐰</h3><p>Que tengas un día suavecito y bonito 💜</p><button class="primary modal-close" data-modal="morningModal">Entrar a Daily Quest</button></div></div>
+<div class="modal sleep-modal" id="nightModal"><div class="modal-card glass"><img src="tachendo-suenito.jfif" alt="Tachendo sueñito"><h3>Tachendo sueñito... 💤</h3><p>Ya es nochecita. Tu cama te está llamando :3</p><button class="primary modal-close" data-modal="nightModal">Voy a mimir ♡</button></div></div>
+<div class="modal sleep-modal" id="lateModal"><div class="modal-card glass"><img src="perrito-madrugada.jfif" alt="Perrito durmiendo con su peluche"><h3>¿Sigues despierto? ;w;</h3><p>Hasta el perrito ya está abrazando su peluche. Acuérdate de descansar también 💜</p><button class="primary modal-close" data-modal="lateModal">Prometo dormir pronto 🥺</button></div></div>
 <div class="app">
 <header id="today"><div class="eyebrow">una pequeña misión para ti</div><h1>Daily Quest 💜</h1><div class="date" id="date"></div><div class="quote glass" id="quote"></div></header>
 <div class="special-banner glass" id="nightBanner">🌙 Ya es nochecita. Si hoy fue difícil, igual hiciste lo que pudiste y eso vale muchísimo. ♡</div>
@@ -99,9 +145,10 @@
 <section class="section glass"><div class="section-head"><div class="icon">🍙</div><div class="section-title"><h2>Comiditas fáciles</h2><p>Ideas o selección del día. No dan puntos, solo acompañan.</p></div><span class="weight-pill no-points">sin puntos</span></div><div id="food"></div><div class="task-note">Aquí puede marcar lo que sí salió hoy, sin presión ni porcentaje.</div></section>
 </div>
 <div class="actions"><button class="primary" id="historyBtn">📅 Ver historial</button><button id="resetBtn">↺ Reiniciar hoy</button><button id="missionBtn">🎲 Dame una mini misión</button><button id="hardDayBtn">🫶 Hoy fue difícil</button></div>
+<section class="guide-card glass"><div class="guide-copy"><h2>🗓️ Horario & ayuditas</h2><p>¿No sabes qué hacer, qué cocinar o necesitas organizar tu día? Te dejé una pequeña guía para ti ♡</p><a class="guide-link" href="horario-tips.pdf" target="_blank" rel="noopener">📖 Abrir guía</a></div><img class="guide-art" src="novios.png" alt="Dibujo de nosotros dos"></section>
 <div class="two-col">
 <section class="small-card glass" id="messages"><h2>Mensajitos & estado del día 💌</h2><p>Hazlo más bonito registrando cómo se sintió y una cosita buena del día.</p><div class="mood-grid"><button class="mood-btn" data-mood="😞">😞<span>Pesadito</span></button><button class="mood-btn" data-mood="😐">😐<span>Normal</span></button><button class="mood-btn" data-mood="🙂">🙂<span>Bien</span></button><button class="mood-btn" data-mood="😄">😄<span>Lindo</span></button></div><textarea id="goodThing" placeholder="Algo bueno de hoy... ✨"></textarea><div class="message-list" id="messageList"></div><div class="clove-note">Clove says hi ♡</div><img class="clove-sticker" src="clove.png" alt="Clove"></section>
-<section class="small-card glass" id="stats"><h2>Nuestra playlist 💿</h2><p>Sí, los links de YouTube sí sirven :3 dejé un mini reproductor.</p><div class="yt-wrap"><div class="yt-frame"><div id="ytPlayer"></div></div><div class="track-name" id="trackName">One Last Kiss</div><div class="player-row"><div class="track-sub" id="trackSub">1 / 32</div><a id="openTrack" href="https://youtu.be/GYeOVn0PhSk" target="_blank" rel="noopener">Abrir en YouTube ↗</a></div><div class="player-controls"><button id="prevTrack">⏮</button><button class="primary" id="togglePlay">▶</button><button id="nextTrack">⏭</button></div><select id="trackSelect"></select><div class="playlist-tip">Tip: en algunos celulares el video no empieza solito hasta que tocas play. Eso es normal :3</div></div><div class="stats-list" id="statsList"></div></section>
+<section class="small-card glass" id="stats"><h2>Nuestra playlist 💿</h2><p>Tus canciones guardadas aquí, con sus portaditas ♡</p><div class="local-player"><div class="disc-stage"><div class="disc-glow" id="discGlow"></div><div class="disc" id="disc"><img id="coverArt" src="covers/track-01.jpg" alt="Portada de la canción"></div></div><div class="music-title" id="trackName">One Last Kiss</div><div class="music-count" id="trackSub">1 / 31</div><audio id="audioPlayer" preload="metadata"></audio><div class="seek-row"><span id="currentTime">0:00</span><input class="seek" id="seekBar" type="range" min="0" max="100" value="0" step="0.1"><span id="durationTime">0:00</span></div><div class="music-controls"><button id="shuffleBtn" title="Aleatorio">🔀</button><button id="prevTrack" title="Anterior">⏮</button><button class="play-main" id="togglePlay" title="Reproducir">▶</button><button id="nextTrack" title="Siguiente">⏭</button><button id="repeatBtn" title="Repetir">🔁</button></div><div class="volume-row"><span>🔉</span><input class="volume" id="volumeBar" type="range" min="0" max="1" value="0.8" step="0.01"></div><div class="track-select-label">Elegir canción</div><select class="track-select" id="trackSelect"></select></div><div class="stats-list" id="statsList"></div></section>
 </div>
 <section class="history glass" id="historySection"><h2>Tu caminito 🌷</h2><p>Progreso visual del mes + historial reciente</p><div class="history-grid"><div class="history-pane"><h3>Últimos días</h3><div id="historyPreview"></div><div id="historyMore" class="hide"></div><button id="toggleMoreHistory" style="margin-top:10px">📖 Ver más</button></div><div class="calendar"><div class="calendar-head"><div class="calendar-title" id="calendarTitle">Mes</div></div><div class="calendar-weekdays"><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div><div>D</div></div><div class="calendar-grid" id="calendarGrid"></div><div class="legend"><span><i class="pct1"></i>1-24%</span><span><i class="pct2"></i>25-49%</span><span><i class="pct3"></i>50-74%</span><span><i class="pct4"></i>75-100%</span></div></div></div></section>
 <div class="two-col"><section class="small-card glass"><h2>Logros 🏆</h2><p>Pequeñas victorias desbloqueadas</p><div class="achievements" id="achievements"></div></section><section class="isagi-zone glass"><div class="isagi-message" id="isagiMessage">Una misión más. Sigue adelante ♡</div><div class="isagi-sub" id="isagiSub">Isagi vino a vigilar el final de la lista :3</div><img class="isagi-img" src="isagi.png" alt="Isagi"></section></div>
@@ -110,46 +157,12 @@
 </div>
 <div class="floating-plush"><div class="plush-bubble" id="plushBubble">Nuestra peluche hija vino a acompañarte un ratito :,3</div><button class="plush-btn" id="plushBtn" aria-label="Mostrar mensaje del peluche"><img src="peluche_hija.png" alt="Peluche hija"></button></div>
 <div class="nav-mini"><a href="#today">☁️ Hoy</a><a href="#historySection">📅 Historial</a><a href="#stats">📊 Stats</a><a href="#messages">💌 Mensajes</a></div>
-<script src="https://www.youtube.com/iframe_api"></script>
 <script>
 const TASKS = {necessary:["¡Desperté temprano!","¡Lavé mis dientes!","¡Lavé mi cara!","¡Fui a la universidad!","¡Hice ejercicio!","¡Paseé al Bobi!","¡Hoy me sentí bien!","¡Me dormí temprano!"],extras:["¡Hoy socialicé!","¡Hoy edité un video!","¡Hoy limpié mi casa/cuarto!","¡Hoy dibujé!","¡Hoy leí un libro!","¡Hoy leí un comic/manga!","¡Hoy hice mis tareas!","¡Hoy hice algo diferente!","¡Hoy toqué la guitarra!","¡Hoy programé!","¡Hoy cociné!"],avoid:["Hoy no procrastiné :D","¡Hoy no comí mal!","Hoy no hice doomscrolling"],food:["Arroz blanco","Puré de papa","Huevo (+ con pan, jamón)","Pollo, o milanesas de pollo!","Atún con algo fácil","Yogur + fruta","Sándwich sencillo","Pasta fácil"]};
 const QUOTES=["No tienes que hacerlo perfecto. Hacer un poquito ya cuenta. 💜","Estoy orgullosa de ti incluso de los días pequeñitos. 🌷","Una misión a la vez, mi amor. Tú puedes. ✨","Hoy también cuenta. Aunque haya sido un día raro. ☁️","No necesitas ganarle al día; solo caminar un poquito con él. 🌱","Pequeños pasos siguen siendo pasos. 💜"];
 const RANDOM_MISSIONS=["Toma un vasito de agua 💧","Estírate un minutito 🌿","Escucha una canción que te guste 🎵","Respira profundo 5 veces ☁️","Ordena un rincón pequeñito ✨","Sal a tomar aire dos minutos 🌤️","Manda un mensajito lindo 💌","Ponte de pie y camina un poquito 👣"];
 const ACHIEVEMENTS=[{id:"firstDay",title:"Primera semillita",text:"Haz al menos 25% un día."},{id:"firstPerfect",title:"Día completito",text:"Llega al 100% por primera vez."},{id:"allNecessary3",title:"Base firme",text:"Completa todas las necesarias en 3 días."},{id:"bonus5",title:"Más allá de la meta",text:"Acumula 5 extras bonus entre todos los días."},{id:"streak3",title:"Racha bonita",text:"Consigue una racha de 3 días con todas las necesarias."},{id:"logged10",title:"Diez días contigo",text:"Registra 10 días en total."}];
-const PLAYLIST=[
-{ title: 'One Last Kiss', id: 'GYeOVn0PhSk' },
-{ title: 'I Really Want to Stay at Your House', id: 'Rbgw_rduQpM' },
-{ title: 'Plastic Love', id: 'T_lC2O1oIew' },
-{ title: 'Perfume - Electro World', id: '8zh0ouiYIZc' },
-{ title: 'おつかれSUMMER', id: 'j1DnOm0DdQU' },
-{ title: 'School Rumble ED 1', id: 'IjZ7SNfda78' },
-{ title: 'Bishounen', id: 'kDmU8MF9e80' },
-{ title: 'Jenny (I Wanna Ruin Our Friendship)', id: 'b5bjIgfQL3Q' },
-{ title: "It's Not Like I Like You!!", id: 'tOzOD-82mW0' },
-{ title: 'Seafoam', id: 's5GtPuc3CmM' },
-{ title: 'Paper Lantern', id: 'eS1IR-vVKOI' },
-{ title: 'Cherrybonbon', id: 'EADl0e-7X_k' },
-{ title: 'Gee', id: 'qizghQs4K6E' },
-{ title: 'PONPONPON', id: 'd3a27OcNWZc' },
-{ title: 'Bucktooth', id: 'Fb1gfninjbo' },
-{ title: 'ME!ME!ME! feat. daoko', id: 'MkN7xmLBHyA' },
-{ title: 'Yumemitetano Atashi', id: 'kqMpUnzqtog' },
-{ title: 'BANG!', id: '764KqzUn0eo' },
-{ title: 'ワールドイズマイン', id: 'qrwVthk38b0' },
-{ title: 'Focus Focus', id: 'as6zv80kV6Y' },
-{ title: 'Notice Me Senpai', id: 'gK6sIcY-nOg' },
-{ title: 'Onna No Ko Otoko No Ko', id: 'drNMJw5hHYo' },
-{ title: 'ぴぽぴぽ', id: 'iRvkMzy4Gcg' },
-{ title: 'Kamisama Hajimemashita', id: 'CpDpUewAgpE' },
-{ title: 'スマイリーを探して', id: 'p3e_HwISnqs' },
-{ title: 'seisyun complex', id: '7FDRQifEMUQ' },
-{ title: 'hitoribocchi tokyo', id: 'MSnLgdQFk1c' },
-{ title: 'What is wrong with', id: 'BVvcQ4ge8Ow' },
-{ title: 'Renai Circulation', id: 'uKxyLmbOc0Q' },
-{ title: 'Say So (Japanese Version)', id: 'yIAsrNc76-Y' },
-{ title: 'Koinu no Carnival', id: 'ZhZxKhAilZk' },
-{ title: 'Human Music', id: 'JWtC87gdsgo' }
-];
+const PLAYLIST=[{"title":"One Last Kiss","audio":"music/track-01.m4a","cover":"covers/track-01.jpg"},{"title":"I Really Want to Stay at Your House","audio":"music/track-02.m4a","cover":"covers/track-02.jfif"},{"title":"Plastic Love","audio":"music/track-03.m4a","cover":"covers/track-03.jpg"},{"title":"Perfume - Electro World","audio":"music/track-04.m4a","cover":"covers/track-04.jpg"},{"title":"おつかれSUMMER","audio":"music/track-05.m4a","cover":"covers/track-05.jpg"},{"title":"Bishounen","audio":"music/track-06.m4a","cover":"covers/track-06.jpg"},{"title":"Jenny (I Wanna Ruin Our Friendship)","audio":"music/track-07.m4a","cover":"covers/track-07.jpg"},{"title":"It's Not Like I Like You!!","audio":"music/track-08.m4a","cover":"covers/track-08.jfif"},{"title":"Seafoam","audio":"music/track-09.m4a","cover":"covers/track-09.jpg"},{"title":"Paper Lantern","audio":"music/track-10.m4a","cover":"covers/track-10.jpg"},{"title":"Cherrybonbon","audio":"music/track-11.m4a","cover":"covers/track-11.jpg"},{"title":"Gee","audio":"music/track-12.m4a","cover":"covers/track-12.jpg"},{"title":"PONPONPON","audio":"music/track-13.m4a","cover":"covers/track-13.jpg"},{"title":"Bucktooth","audio":"music/track-14.m4a","cover":"covers/track-14.jpg"},{"title":"ME!ME!ME! feat. daoko","audio":"music/track-15.m4a","cover":"covers/track-15.jpg"},{"title":"Yumemitetano Atashi","audio":"music/track-16.m4a","cover":"covers/track-16.jpg"},{"title":"BANG!","audio":"music/track-17.m4a","cover":"covers/track-17.jpg"},{"title":"ワールドイズマイン","audio":"music/track-18.m4a","cover":"covers/track-18.jpg"},{"title":"Focus Focus","audio":"music/track-19.m4a","cover":"covers/track-19.jpg"},{"title":"Notice Me Senpai","audio":"music/track-20.m4a","cover":"covers/track-20.jpg"},{"title":"Onna No Ko Otoko No Ko","audio":"music/track-21.m4a","cover":"covers/track-21.jpg"},{"title":"ぴぽぴぽ","audio":"music/track-22.m4a","cover":"covers/track-22.jpg"},{"title":"Kamisama Hajimemashita","audio":"music/track-23.m4a","cover":"covers/track-23.jpg"},{"title":"スマイリーを探して","audio":"music/track-24.m4a","cover":"covers/track-24.jpg"},{"title":"seisyun complex","audio":"music/track-25.m4a","cover":"covers/track-25.jpg"},{"title":"hitoribocchi tokyo","audio":"music/track-26.m4a","cover":"covers/track-26.jpg"},{"title":"What is wrong with","audio":"music/track-27.m4a","cover":"covers/track-27.jpg"},{"title":"Renai Circulation","audio":"music/track-28.m4a","cover":"covers/track-28.jpg"},{"title":"Say So (Japanese Version)","audio":"music/track-29.m4a","cover":"covers/track-29.jpg"},{"title":"Koinu no Carnival","audio":"music/track-30.m4a","cover":"covers/track-30.jpg"},{"title":"Human Music","audio":"music/track-31.m4a","cover":"covers/track-31.png"}];
 const todayKey=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
 let data=JSON.parse(localStorage.getItem("dailyQuest")||'{"days":{}}');
 const key=todayKey();
@@ -174,16 +187,129 @@ function renderAchievements(){const wrap=document.getElementById("achievements")
 function historyRow(k){const pct=dayPct(k);const [y,m,d]=k.split("-");return `<div class="day"><span>${d}/${m}/${y.slice(2)}</span><div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div><b>${pct}%</b></div>`;}
 function renderHistory(){const keys=Object.keys(data.days).sort().reverse();const preview=document.getElementById("historyPreview");const more=document.getElementById("historyMore");const btn=document.getElementById("toggleMoreHistory");if(!keys.length){preview.innerHTML='<div class="empty">Todavía no hay días guardados.</div>';more.innerHTML='';btn.classList.add('hide');return;}preview.innerHTML=keys.slice(0,5).map(historyRow).join("");more.innerHTML=keys.slice(5,30).map(historyRow).join("");if(keys.length<=5) btn.classList.add('hide');else btn.classList.remove('hide');btn.textContent=more.classList.contains('hide')?'📖 Ver más':'📕 Ver menos';}
 function renderCalendar(){const grid=document.getElementById("calendarGrid");const title=document.getElementById("calendarTitle");const now=new Date();const year=now.getFullYear();const month=now.getMonth();title.textContent=now.toLocaleDateString("es-MX",{month:"long",year:"numeric"});const first=new Date(year,month,1);const last=new Date(year,month+1,0);const start=(first.getDay()+6)%7;let cells=[];for(let i=0;i<start;i++) cells.push('<div class="calendar-cell empty"></div>');for(let day=1;day<=last.getDate();day++){const k=year+"-"+String(month+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");const pct=data.days[k]?dayPct(k):0;let cls="pct0";if(pct>=75) cls="pct4";else if(pct>=50) cls="pct3";else if(pct>=25) cls="pct2";else if(pct>0) cls="pct1";cells.push(`<div class="calendar-cell ${cls}" title="${pct}%">${day}</div>`);}grid.innerHTML=cells.join("");}
-let player=null,playerReady=false,currentTrack=0,pendingAutoplay=false;
-window.onYouTubeIframeAPIReady=function(){player=new YT.Player('ytPlayer',{videoId:PLAYLIST[0].id,playerVars:{rel:0,modestbranding:1},events:{onReady:()=>{playerReady=true;syncTrackUI();if(pendingAutoplay){player.playVideo();pendingAutoplay=false;}},onStateChange:updatePlayButton}});};
-function updatePlayButton(){if(!playerReady) return;const state=player.getPlayerState();document.getElementById('togglePlay').textContent=state===YT.PlayerState.PLAYING?'⏸':'▶';}
-function syncTrackUI(){const t=PLAYLIST[currentTrack];document.getElementById('trackName').textContent=t.title;document.getElementById('trackSub').textContent=(currentTrack+1)+' / '+PLAYLIST.length;document.getElementById('openTrack').href='https://youtu.be/'+t.id;const select=document.getElementById('trackSelect');if(select.options.length) select.value=String(currentTrack);}
-function loadTrack(index,autoplay=false){currentTrack=(index+PLAYLIST.length)%PLAYLIST.length;syncTrackUI();if(playerReady){if(autoplay) player.loadVideoById(PLAYLIST[currentTrack].id);else player.cueVideoById(PLAYLIST[currentTrack].id);}else pendingAutoplay=autoplay;}
-function fillTrackSelect(){const s=document.getElementById('trackSelect');s.innerHTML=PLAYLIST.map((t,i)=>`<option value="${i}">${i+1}. ${t.title}</option>`).join('');s.onchange=e=>loadTrack(Number(e.target.value),true);}
-function updateUI(){ensureDay(key);const now=new Date();const hour=now.getHours();const stats=getScoring(key);document.getElementById('date').textContent=now.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});document.getElementById('percent').textContent=stats.pct+'%';document.getElementById('fill').style.width=stats.pct+'%';document.getElementById('progressText').textContent=`${stats.necessaryDone}/${TASKS.necessary.length} necesarias · ${Math.min(stats.extrasDone,5)}/5 extras · ${Math.min(stats.avoidDone,3)}/3 evitadas`;document.getElementById('quote').textContent=quoteForToday(stats,hour);document.getElementById('compareLine').textContent=comparisonText(stats.pct);document.getElementById('streak').textContent=streakCount();document.getElementById('perfect').textContent=perfectDays();document.getElementById('average').textContent=averagePct()+'%';document.getElementById('bonusLine').classList.toggle('show',stats.bonusExtras>0);document.getElementById('bonusLine').textContent=`🌟 Hiciste ${stats.bonusExtras} extra${stats.bonusExtras>1?'s':''} bonus arriba de la meta`;document.getElementById('celebrationBox').classList.toggle('show',stats.pct>=100);const hardDay=ensureDay(key).hardDay;document.getElementById('hardDayBtn').classList.toggle('soft-active',hardDay);document.getElementById('hardDayBtn').textContent=hardDay?'🫶 Modo suave activado':'🫶 Hoy fue difícil';const [msg,sub]=isagiTexts(stats);document.getElementById('isagiMessage').textContent=msg;document.getElementById('isagiSub').textContent=sub;document.getElementById('nightBanner').classList.toggle('show',hour>=21);renderMood();renderMessages(stats);renderStatsList(stats);renderAchievements();renderHistory();renderCalendar();}
+let currentTrack=0;
+let playerInitialized=false;
+let shuffleMode=false;
+let repeatMode=false;
+let lastSavedSecond=-1;
+const audio=document.getElementById('audioPlayer');
+
+function playerPrefs(){
+  try{return JSON.parse(localStorage.getItem('dailyQuestPlayer')||'{}');}catch(e){return {};}
+}
+function savePlayerPrefs(extra={}){
+  const old=playerPrefs();
+  const next={...old,track:currentTrack,shuffle:shuffleMode,repeat:repeatMode,volume:audio.volume,...extra};
+  localStorage.setItem('dailyQuestPlayer',JSON.stringify(next));
+}
+function formatTime(sec){
+  if(!Number.isFinite(sec)) return '0:00';
+  const m=Math.floor(sec/60), s=Math.floor(sec%60);
+  return m+':'+String(s).padStart(2,'0');
+}
+function syncTrackUI(){
+  const t=PLAYLIST[currentTrack];
+  document.getElementById('trackName').textContent=t.title;
+  document.getElementById('trackSub').textContent=(currentTrack+1)+' / '+PLAYLIST.length;
+  document.getElementById('coverArt').src=t.cover;
+  document.getElementById('coverArt').alt='Portada de '+t.title;
+  const select=document.getElementById('trackSelect');
+  if(select.options.length) select.value=String(currentTrack);
+}
+function loadTrack(index,autoplay=false,restoreTime=0){
+  currentTrack=(index+PLAYLIST.length)%PLAYLIST.length;
+  const t=PLAYLIST[currentTrack];
+  audio.src=t.audio;
+  syncTrackUI();
+  document.getElementById('seekBar').value=0;
+  document.getElementById('currentTime').textContent='0:00';
+  document.getElementById('durationTime').textContent='0:00';
+  const onMeta=()=>{
+    if(restoreTime>0 && restoreTime<audio.duration-2) audio.currentTime=restoreTime;
+    document.getElementById('durationTime').textContent=formatTime(audio.duration);
+    if(autoplay) audio.play().catch(()=>{});
+    audio.removeEventListener('loadedmetadata',onMeta);
+  };
+  audio.addEventListener('loadedmetadata',onMeta);
+  audio.load();
+  savePlayerPrefs({time:restoreTime||0});
+}
+function nextTrack(){
+  if(shuffleMode && PLAYLIST.length>1){
+    let next=currentTrack;
+    while(next===currentTrack) next=Math.floor(Math.random()*PLAYLIST.length);
+    loadTrack(next,true,0);
+  } else loadTrack(currentTrack+1,true,0);
+}
+function prevTrack(){
+  if(audio.currentTime>4){audio.currentTime=0;return;}
+  loadTrack(currentTrack-1,true,0);
+}
+function updatePlayUI(){
+  const playing=!audio.paused && !audio.ended;
+  document.getElementById('togglePlay').textContent=playing?'⏸':'▶';
+  document.getElementById('disc').classList.toggle('playing',playing);
+}
+function initPlayer(){
+  if(playerInitialized) return;
+  playerInitialized=true;
+  const prefs=playerPrefs();
+  currentTrack=Math.min(Math.max(Number(prefs.track)||0,0),PLAYLIST.length-1);
+  shuffleMode=!!prefs.shuffle;
+  repeatMode=!!prefs.repeat;
+  audio.volume=Number.isFinite(Number(prefs.volume))?Math.min(1,Math.max(0,Number(prefs.volume))):0.8;
+  document.getElementById('volumeBar').value=audio.volume;
+  document.getElementById('shuffleBtn').classList.toggle('active',shuffleMode);
+  document.getElementById('repeatBtn').classList.toggle('active',repeatMode);
+  const select=document.getElementById('trackSelect');
+  select.innerHTML=PLAYLIST.map((t,i)=>`<option value="${i}">${i+1}. ${t.title}</option>`).join('');
+  select.onchange=e=>loadTrack(Number(e.target.value),false,0);
+  document.getElementById('togglePlay').onclick=()=>{if(audio.paused) audio.play().catch(()=>{});else audio.pause();};
+  document.getElementById('prevTrack').onclick=prevTrack;
+  document.getElementById('nextTrack').onclick=nextTrack;
+  document.getElementById('shuffleBtn').onclick=()=>{shuffleMode=!shuffleMode;document.getElementById('shuffleBtn').classList.toggle('active',shuffleMode);savePlayerPrefs();};
+  document.getElementById('repeatBtn').onclick=()=>{repeatMode=!repeatMode;document.getElementById('repeatBtn').classList.toggle('active',repeatMode);savePlayerPrefs();};
+  document.getElementById('volumeBar').oninput=e=>{audio.volume=Number(e.target.value);savePlayerPrefs();};
+  document.getElementById('seekBar').oninput=e=>{if(Number.isFinite(audio.duration)) audio.currentTime=(Number(e.target.value)/100)*audio.duration;};
+  audio.addEventListener('play',updatePlayUI);
+  audio.addEventListener('pause',()=>{updatePlayUI();savePlayerPrefs({time:audio.currentTime});});
+  audio.addEventListener('ended',()=>{if(repeatMode){audio.currentTime=0;audio.play().catch(()=>{});}else nextTrack();});
+  audio.addEventListener('timeupdate',()=>{
+    const pct=audio.duration?audio.currentTime/audio.duration*100:0;
+    document.getElementById('seekBar').value=pct;
+    document.getElementById('currentTime').textContent=formatTime(audio.currentTime);
+    document.getElementById('durationTime').textContent=formatTime(audio.duration);
+    const sec=Math.floor(audio.currentTime);
+    if(sec!==lastSavedSecond && sec%5===0){lastSavedSecond=sec;savePlayerPrefs({time:audio.currentTime});}
+  });
+  loadTrack(currentTrack,false,Number(prefs.time)||0);
+}
+
+function updateUI(){ensureDay(key);const now=new Date();const hour=now.getHours();const stats=getScoring(key);document.getElementById('date').textContent=now.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});document.getElementById('percent').textContent=stats.pct+'%';document.getElementById('fill').style.width=stats.pct+'%';document.getElementById('progressText').textContent=`${stats.necessaryDone}/${TASKS.necessary.length} necesarias · ${Math.min(stats.extrasDone,5)}/5 extras · ${Math.min(stats.avoidDone,3)}/3 evitadas`;document.getElementById('quote').textContent=quoteForToday(stats,hour);document.getElementById('compareLine').textContent=comparisonText(stats.pct);document.getElementById('streak').textContent=streakCount();document.getElementById('perfect').textContent=perfectDays();document.getElementById('average').textContent=averagePct()+'%';document.getElementById('bonusLine').classList.toggle('show',stats.bonusExtras>0);document.getElementById('bonusLine').textContent=`🌟 Hiciste ${stats.bonusExtras} extra${stats.bonusExtras>1?'s':''} bonus arriba de la meta`;document.getElementById('celebrationBox').classList.toggle('show',stats.pct>=100);const hardDay=ensureDay(key).hardDay;document.body.classList.toggle('soft-mode',hardDay);document.getElementById('hardDayBtn').classList.toggle('soft-active',hardDay);document.getElementById('hardDayBtn').textContent=hardDay?'🫶 Modo suave activado':'🫶 Hoy fue difícil';const [msg,sub]=isagiTexts(stats);document.getElementById('isagiMessage').textContent=msg;document.getElementById('isagiSub').textContent=sub;document.getElementById('nightBanner').classList.toggle('show',hour>=21);renderMood();renderMessages(stats);renderStatsList(stats);renderAchievements();renderHistory();renderCalendar();}
 function resetToday(){if(confirm('¿Reiniciar las casillas y notas de hoy? El historial de días anteriores no se borrará.')){data.days[key]={completed:{},mood:'',goodThing:'',hardDay:false};save();renderAll();}}
-function renderAll(){['necessary','extras','avoid','food'].forEach(renderCategory);document.getElementById('goodThing').value=ensureDay(key).goodThing||'';fillTrackSelect();syncTrackUI();updateUI();}
-function showMorningModalIfNeeded(){const hour=new Date().getHours();const modal=document.getElementById('morningModal');const seenKey='dailyQuestMorningPopup-'+key;if(hour>=9 && hour<11 && !localStorage.getItem(seenKey)) modal.classList.add('show');document.getElementById('closeMorningModal').addEventListener('click',()=>{modal.classList.remove('show');localStorage.setItem(seenKey,'1');});}
+function renderAll(){['necessary','extras','avoid','food'].forEach(renderCategory);document.getElementById('goodThing').value=ensureDay(key).goodThing||'';initPlayer();updateUI();}
+function dateKeyFrom(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function showTimedModalIfNeeded(){
+  const now=new Date(), hour=now.getHours();
+  let modalId=null, seenKey=null;
+  if(hour>=1 && hour<7){
+    modalId='lateModal'; seenKey='dailyQuestLatePopup-'+dateKeyFrom(now);
+  } else if(hour>=22 || hour<1){
+    const nightDate=new Date(now); if(hour<1) nightDate.setDate(nightDate.getDate()-1);
+    modalId='nightModal'; seenKey='dailyQuestNightPopup-'+dateKeyFrom(nightDate);
+  } else if(hour>=9 && hour<11){
+    modalId='morningModal'; seenKey='dailyQuestMorningPopup-'+dateKeyFrom(now);
+  }
+  if(modalId && !localStorage.getItem(seenKey)){
+    document.getElementById(modalId).classList.add('show');
+    document.getElementById(modalId).dataset.seenKey=seenKey;
+  }
+  document.querySelectorAll('.modal-close').forEach(btn=>btn.onclick=()=>{
+    const modal=document.getElementById(btn.dataset.modal);
+    modal.classList.remove('show');
+    if(modal.dataset.seenKey) localStorage.setItem(modal.dataset.seenKey,'1');
+  });
+}
 function toggleHardDay(){const day=ensureDay(key);day.hardDay=!day.hardDay;save();updateUI();}
 document.getElementById('historyBtn').addEventListener('click',()=>document.getElementById('historySection').scrollIntoView({behavior:'smooth',block:'start'}));
 document.getElementById('toggleMoreHistory').addEventListener('click',()=>{const more=document.getElementById('historyMore');more.classList.toggle('hide');document.getElementById('toggleMoreHistory').textContent=more.classList.contains('hide')?'📖 Ver más':'📕 Ver menos';});
@@ -191,7 +317,6 @@ document.getElementById('resetBtn').addEventListener('click',resetToday);documen
 document.querySelectorAll('.mood-btn').forEach(btn=>btn.addEventListener('click',()=>{const day=ensureDay(key);day.mood=btn.dataset.mood===day.mood?'':btn.dataset.mood;save();updateUI();}));
 document.getElementById('goodThing').addEventListener('input',e=>{ensureDay(key).goodThing=e.target.value;save();updateUI();});
 document.getElementById('plushBtn').addEventListener('click',()=>document.getElementById('plushBubble').classList.toggle('show'));
-document.getElementById('prevTrack').addEventListener('click',()=>loadTrack(currentTrack-1,true));document.getElementById('nextTrack').addEventListener('click',()=>loadTrack(currentTrack+1,true));document.getElementById('togglePlay').addEventListener('click',()=>{if(!playerReady) return;const state=player.getPlayerState();if(state===YT.PlayerState.PLAYING) player.pauseVideo();else player.playVideo();});
-renderAll();showMorningModalIfNeeded();setInterval(()=>{if(todayKey()!==key) location.reload();},30000);
+renderAll();showTimedModalIfNeeded();setInterval(()=>{if(todayKey()!==key) location.reload();},30000);
 </script>
 </body></html>
